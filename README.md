@@ -19,7 +19,6 @@
 
 HFASpeedTest Pro es una aplicación de escritorio para Windows que permite realizar análisis completos y precisos de tu conexión a Internet. A diferencia de otras herramientas, ofrece mediciones en tiempo real con visualización detallada de métricas de red, incluyendo velocidad de descarga/subida, latencia, jitter, pérdida de paquetes y análisis de simetría de conexión.
 <img width="1600" height="844" alt="screencap2" src="https://github.com/user-attachments/assets/c60536dd-2f3c-4cf6-a85f-1f841ec54345" />
-<img width="1208" height="626" alt="screencap1" src="https://github.com/user-attachments/assets/5eeb9464-9c57-4f1f-a01b-a3bf235d08f2" />
 
 ### 🎯 ¿Por qué HFASpeedTest Pro?
 
@@ -182,29 +181,7 @@ Pérdida de Paquetes: % de paquetes perdidos
 ## 📸 Capturas de Pantalla
 
 ### Interfaz Principal
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  ⚡ HFASpeedTest Pro                                            │
-│  Analiza tu conexión a internet en segundos                     │
-├─────────────────────────────────────────────────────────────────┤
-│                    [ Iniciar Test ]                             │
-│  ✓ Test completado exitosamente.                                │
-├──────────────────────────────┬──────────────────────────────────┤
-│ Información de Conexión      │  Simetría de Conexión            │
-│ • Tipo de Conexión: WiFi     │  95.3%                           │
-│ • IP Local: 192.168.1.5      │  ✓ Conexión simétrica            │
-│ • IP Pública: 45.67.89.123   │  ████████████████████            │
-│ • Tipo de IP: Dinámica (DHCP)│  ████████████████████            │
-│ • Dirección MAC: AA:BB:CC... │                                  │
-├──────────────────────────────┼──────────────────────────────────┤
-│ Velocidad                    │  Latencia (Ping a 8.8.8.8)       │
-│ ┌───────────┬───────────┐    │  • Latencia Mínima: 12 ms        │
-│ │ ▼ DESCARGA│ ▲ SUBIDA  │    │  • Latencia Máxima: 18 ms        │
-│ │   125.67  │   119.84  │    │  • Latencia Promedio: 14.5 ms    │
-│ │   Mbps    │   Mbps    │    │  • Jitter: 2.3 ms                │
-│ └───────────┴───────────┘    │  • Pérdida de Paquetes: 0%       │
-└──────────────────────────────┴──────────────────────────────────┘
-```
+<img width="1208" height="626" alt="screencap1" src="https://github.com/user-attachments/assets/5eeb9464-9c57-4f1f-a01b-a3bf235d08f2" />
 
 ---
 
