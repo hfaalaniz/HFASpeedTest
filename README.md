@@ -387,7 +387,7 @@ SOFTWARE.
 
 ## 👥 Autores
 
-- **HFA** - *Desarrollo inicial* - [@tu-usuario](https://github.com/tu-usuario)
+- **HFA** - *Desarrollo inicial* - [@tu-usuario](https://github.com/hfaalaniz)
 
 Ver también la lista de [contribuidores](../../contributors) que participaron en este proyecto.
 
@@ -406,10 +406,18 @@ Ver también la lista de [contribuidores](../../contributors) que participaron e
 
 - **Issues**: [GitHub Issues](../../issues)
 - **Discusiones**: [GitHub Discussions](../../discussions)
-- **Email**: tu-email@example.com
-- **Twitter**: [@tu_handle](https://twitter.com/tu_handle)
+- **Email: [hfaalaniz@gmail.com]
+- **Twitter**: [@tu_handle](https://twitter.com/@hfaalaniz)
+
+
 
 ---
+
+## ☕ Apoya este Proyecto
+
+Si este proyecto te ha sido útil y te ha ahorrado tiempo en tus diseños de electrónica de potencia, considera invitarme un café. Tu apoyo ayuda a mantener el proyecto activo y a desarrollar nuevas funcionalidades.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/hfaalaniz)
 
 ## 🌟 Star History
 
@@ -422,7 +430,8 @@ Si este proyecto te resulta útil, ¡dale una estrella! ⭐
 <div align="center">
 
 **[⬆ Volver arriba](#-hfaspeedtest-pro)**
+Agradecimientos especiales a la comunidad de electrónica de potencia y desarrolladores de software open source que hacen posible proyectos como este.
 
-Hecho con ❤️ por la comunidad
+**Made with ❤️ for Electronics Engineers**
 
 </div>
