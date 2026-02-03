@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             _headerPanel = new Panel();
+            linkLabel1 = new LinkLabel();
             _subtitleLabel = new Label();
             _titleLabel = new Label();
             _btnTest = new Button();
@@ -85,6 +86,7 @@
             // _headerPanel
             // 
             _headerPanel.BackColor = Color.FromArgb(24, 24, 32);
+            _headerPanel.Controls.Add(linkLabel1);
             _headerPanel.Controls.Add(_subtitleLabel);
             _headerPanel.Controls.Add(_titleLabel);
             _headerPanel.Dock = DockStyle.Top;
@@ -93,14 +95,28 @@
             _headerPanel.Size = new Size(1210, 90);
             _headerPanel.TabIndex = 0;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabel1.LinkBehavior = LinkBehavior.AlwaysUnderline;
+            linkLabel1.LinkColor = Color.Aqua;
+            linkLabel1.Location = new Point(681, 34);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(135, 21);
+            linkLabel1.TabIndex = 2;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "HFASpeedTest Pro";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // _subtitleLabel
             // 
             _subtitleLabel.AutoSize = true;
-            _subtitleLabel.Font = new Font("Segoe UI", 10F);
+            _subtitleLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
             _subtitleLabel.ForeColor = Color.FromArgb(140, 140, 160);
-            _subtitleLabel.Location = new Point(30, 48);
+            _subtitleLabel.Location = new Point(45, 53);
             _subtitleLabel.Name = "_subtitleLabel";
-            _subtitleLabel.Size = new Size(272, 19);
+            _subtitleLabel.Size = new Size(246, 17);
             _subtitleLabel.TabIndex = 1;
             _subtitleLabel.Text = "Analiza tu conexión a internet en segundos";
             // 
@@ -657,5 +673,6 @@
         private Label _lblLatAvg, _valLatAvg;
         private Label _lblLatJitter, _valLatJitter;
         private Label _lblLatLoss, _valLatLoss;
+        private LinkLabel linkLabel1;
     }
 }

@@ -302,5 +302,19 @@ namespace HFASpeedTest
             _cts?.Cancel();
             base.OnFormClosing(e);
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Abre la página web en el navegador predeterminado
+
+            // Marca el enlace como visitado
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/hfaalaniz/HFASpeedTest/blob/main/README.md",
+                        UseShellExecute = true
+            });
+
+            ((LinkLabel)sender).LinkVisited = true;
+        }
     }
 }
