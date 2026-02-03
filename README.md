@@ -407,7 +407,7 @@ Ver también la lista de [contribuidores](../../contributors) que participaron e
 - **Issues**: [GitHub Issues](../../issues)
 - **Discusiones**: [GitHub Discussions](../../discussions)
 - **Email: [hfaalaniz@gmail.com]
-- **Twitter**: [@tu_handle](https://twitter.com/@hfaalaniz)
+- **Twitter**: [@hfaalaniz](https://twitter.com/@hfaalaniz)
 
 
 
@@ -415,13 +415,13 @@ Ver también la lista de [contribuidores](../../contributors) que participaron e
 
 ## ☕ Apoya este Proyecto
 
-Si este proyecto te ha sido útil y te ha ahorrado tiempo en tus diseños de electrónica de potencia, considera invitarme un café. Tu apoyo ayuda a mantener el proyecto activo y a desarrollar nuevas funcionalidades.
+Si este proyecto te ha sido útil y te ha ahorrado tiempo en el testeo de tus instalaciones de internet, considera invitarme un café. Tu apoyo ayuda a mantener el proyecto activo y a desarrollar nuevas funcionalidades como las descriptas en el RoadMap.
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Support-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/hfaalaniz)
 
 ## 🌟 Star History
 
-Si este proyecto te resulta útil, ¡dale una estrella! ⭐
+Además, ¡dale una estrella! ⭐
 
 [![Star History Chart](https://api.star-history.com/svg?repos=tu-usuario/HFASpeedTest&type=Date)](https://star-history.com/#tu-usuario/HFASpeedTest&Date)
 
@@ -430,7 +430,7 @@ Si este proyecto te resulta útil, ¡dale una estrella! ⭐
 <div align="center">
 
 **[⬆ Volver arriba](#-hfaspeedtest-pro)**
-Agradecimientos especiales a la comunidad de electrónica de potencia y desarrolladores de software open source que hacen posible proyectos como este.
+Agradecimientos especiales a la comunidad y desarrolladores de software open source que hacen posible proyectos como este.
 
 **Made with ❤️ for Electronics Engineers**
 
