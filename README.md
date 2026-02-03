@@ -387,7 +387,7 @@ SOFTWARE.
 
 ## 👥 Autores
 
-- **HFA** - *Desarrollo inicial* - [@tu-usuario](https://github.com/hfaalaniz)
+- **HFA** - *Desarrollo inicial* - [@hfaalaniz](https://github.com/hfaalaniz)
 
 Ver también la lista de [contribuidores](../../contributors) que participaron en este proyecto.
 
