@@ -18,6 +18,8 @@
 ## 📋 Descripción
 
 HFASpeedTest Pro es una aplicación de escritorio para Windows que permite realizar análisis completos y precisos de tu conexión a Internet. A diferencia de otras herramientas, ofrece mediciones en tiempo real con visualización detallada de métricas de red, incluyendo velocidad de descarga/subida, latencia, jitter, pérdida de paquetes y análisis de simetría de conexión.
+<img width="1600" height="844" alt="screencap2" src="https://github.com/user-attachments/assets/c60536dd-2f3c-4cf6-a85f-1f841ec54345" />
+<img width="1208" height="626" alt="screencap1" src="https://github.com/user-attachments/assets/5eeb9464-9c57-4f1f-a01b-a3bf235d08f2" />
 
 ### 🎯 ¿Por qué HFASpeedTest Pro?
 
