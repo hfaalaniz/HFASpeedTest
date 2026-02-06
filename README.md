@@ -192,18 +192,18 @@ Pérdida de Paquetes: % de paquetes perdidos
 ```
 HFASpeedTest/
 ├── Models/
-│   └── SpeedTestRecord.cs                    ← NUEVO
+│   └── SpeedTestRecord.cs                    # Graba registro de velocidad
 ├── Services/
-│   ├── HistoryService.cs                     ← NUEVO
-│   ├── MonitoringService.cs                  ← NUEVO
+│   ├── HistoryService.cs                     # Historial de servicios
+│   ├── MonitoringService.cs                  # Servicio de monitoreo
 │   ├── SpeedTestService.cs                   # Medición de velocidad
 │   ├── LatencyService.cs                     # Medición de latencia/ping
 │   └── ConnectionInfoService.cs              # Info de conexión
 ├── Forms/
-│   ├── HistoryForm.cs                        ← NUEVO
-│   ├── HistoryForm.Designer.cs               ← NUEVO
-│   ├── MonitoringConfigForm.cs               ← NUEVO
-│   └── MonitoringConfigForm.Designer.cs      ← NUEVO
+│   ├── HistoryForm.cs                        # Lógica de historial de test ejecutados
+│   ├── HistoryForm.Designer.cs               # Diseño de UI 
+│   ├── MonitoringConfigForm.cs               # Lógica de monitoreo contínuo
+│   └── MonitoringConfigForm.Designer.cs      # Diseño de UI
 ├── MainForm.cs                               # Lógica principal de UI
 ├── MainForm.Designer.cs                      # Diseño de UI (generado)
 ├── Program.cs                                # Punto de entrada
