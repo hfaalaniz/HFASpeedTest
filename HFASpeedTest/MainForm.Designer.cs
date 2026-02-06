@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             _headerPanel = new Panel();
-            linkLabel1 = new LinkLabel();
             _subtitleLabel = new Label();
             _titleLabel = new Label();
             _btnTest = new Button();
@@ -73,6 +72,9 @@
             _valLatJitter = new Label();
             _lblLatLoss = new Label();
             _valLatLoss = new Label();
+            _btnHistory = new Button();
+            _btnMonitoring = new Button();
+            _lblMonitoringStatus = new Label();
             _headerPanel.SuspendLayout();
             _grpConexion.SuspendLayout();
             _grpVelocidad.SuspendLayout();
@@ -86,7 +88,6 @@
             // _headerPanel
             // 
             _headerPanel.BackColor = Color.FromArgb(24, 24, 32);
-            _headerPanel.Controls.Add(linkLabel1);
             _headerPanel.Controls.Add(_subtitleLabel);
             _headerPanel.Controls.Add(_titleLabel);
             _headerPanel.Dock = DockStyle.Top;
@@ -95,28 +96,14 @@
             _headerPanel.Size = new Size(1210, 90);
             _headerPanel.TabIndex = 0;
             // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.LinkBehavior = LinkBehavior.AlwaysUnderline;
-            linkLabel1.LinkColor = Color.Aqua;
-            linkLabel1.Location = new Point(681, 34);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(135, 21);
-            linkLabel1.TabIndex = 2;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "HFASpeedTest Pro";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
-            // 
             // _subtitleLabel
             // 
             _subtitleLabel.AutoSize = true;
-            _subtitleLabel.Font = new Font("Segoe UI", 9.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            _subtitleLabel.Font = new Font("Segoe UI", 10F);
             _subtitleLabel.ForeColor = Color.FromArgb(140, 140, 160);
-            _subtitleLabel.Location = new Point(45, 53);
+            _subtitleLabel.Location = new Point(30, 48);
             _subtitleLabel.Name = "_subtitleLabel";
-            _subtitleLabel.Size = new Size(246, 17);
+            _subtitleLabel.Size = new Size(272, 19);
             _subtitleLabel.TabIndex = 1;
             _subtitleLabel.Text = "Analiza tu conexión a internet en segundos";
             // 
@@ -176,9 +163,9 @@
             _grpConexion.Controls.Add(_valMAC);
             _grpConexion.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             _grpConexion.ForeColor = Color.FromArgb(100, 180, 220);
-            _grpConexion.Location = new Point(30, 190);
+            _grpConexion.Location = new Point(30, 181);
             _grpConexion.Name = "_grpConexion";
-            _grpConexion.Size = new Size(570, 170);
+            _grpConexion.Size = new Size(570, 179);
             _grpConexion.TabIndex = 3;
             _grpConexion.TabStop = false;
             _grpConexion.Text = "Información de Conexión";
@@ -188,7 +175,7 @@
             _lblTipoConexion.AutoSize = true;
             _lblTipoConexion.Font = new Font("Segoe UI", 9F);
             _lblTipoConexion.ForeColor = Color.FromArgb(140, 140, 160);
-            _lblTipoConexion.Location = new Point(15, 22);
+            _lblTipoConexion.Location = new Point(20, 30);
             _lblTipoConexion.Name = "_lblTipoConexion";
             _lblTipoConexion.Size = new Size(100, 15);
             _lblTipoConexion.TabIndex = 0;
@@ -198,7 +185,7 @@
             // 
             _valTipoConexion.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _valTipoConexion.ForeColor = Color.FromArgb(220, 220, 230);
-            _valTipoConexion.Location = new Point(170, 22);
+            _valTipoConexion.Location = new Point(175, 30);
             _valTipoConexion.Name = "_valTipoConexion";
             _valTipoConexion.Size = new Size(380, 22);
             _valTipoConexion.TabIndex = 1;
@@ -209,7 +196,7 @@
             _lblIPLocal.AutoSize = true;
             _lblIPLocal.Font = new Font("Segoe UI", 9F);
             _lblIPLocal.ForeColor = Color.FromArgb(140, 140, 160);
-            _lblIPLocal.Location = new Point(15, 52);
+            _lblIPLocal.Location = new Point(20, 60);
             _lblIPLocal.Name = "_lblIPLocal";
             _lblIPLocal.Size = new Size(48, 15);
             _lblIPLocal.TabIndex = 2;
@@ -219,7 +206,7 @@
             // 
             _valIPLocal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _valIPLocal.ForeColor = Color.FromArgb(220, 220, 230);
-            _valIPLocal.Location = new Point(170, 52);
+            _valIPLocal.Location = new Point(175, 60);
             _valIPLocal.Name = "_valIPLocal";
             _valIPLocal.Size = new Size(380, 22);
             _valIPLocal.TabIndex = 3;
@@ -230,7 +217,7 @@
             _lblIPPublica.AutoSize = true;
             _lblIPPublica.Font = new Font("Segoe UI", 9F);
             _lblIPPublica.ForeColor = Color.FromArgb(140, 140, 160);
-            _lblIPPublica.Location = new Point(15, 82);
+            _lblIPPublica.Location = new Point(20, 90);
             _lblIPPublica.Name = "_lblIPPublica";
             _lblIPPublica.Size = new Size(59, 15);
             _lblIPPublica.TabIndex = 4;
@@ -240,7 +227,7 @@
             // 
             _valIPPublica.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _valIPPublica.ForeColor = Color.FromArgb(220, 220, 230);
-            _valIPPublica.Location = new Point(170, 82);
+            _valIPPublica.Location = new Point(175, 90);
             _valIPPublica.Name = "_valIPPublica";
             _valIPPublica.Size = new Size(380, 22);
             _valIPPublica.TabIndex = 5;
@@ -251,7 +238,7 @@
             _lblTipoIP.AutoSize = true;
             _lblTipoIP.Font = new Font("Segoe UI", 9F);
             _lblTipoIP.ForeColor = Color.FromArgb(140, 140, 160);
-            _lblTipoIP.Location = new Point(15, 112);
+            _lblTipoIP.Location = new Point(20, 120);
             _lblTipoIP.Name = "_lblTipoIP";
             _lblTipoIP.Size = new Size(59, 15);
             _lblTipoIP.TabIndex = 6;
@@ -261,7 +248,7 @@
             // 
             _valTipoIP.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _valTipoIP.ForeColor = Color.FromArgb(140, 140, 160);
-            _valTipoIP.Location = new Point(170, 112);
+            _valTipoIP.Location = new Point(175, 120);
             _valTipoIP.Name = "_valTipoIP";
             _valTipoIP.Size = new Size(380, 22);
             _valTipoIP.TabIndex = 7;
@@ -272,7 +259,7 @@
             _lblMAC.AutoSize = true;
             _lblMAC.Font = new Font("Segoe UI", 9F);
             _lblMAC.ForeColor = Color.FromArgb(140, 140, 160);
-            _lblMAC.Location = new Point(15, 142);
+            _lblMAC.Location = new Point(20, 150);
             _lblMAC.Name = "_lblMAC";
             _lblMAC.Size = new Size(87, 15);
             _lblMAC.TabIndex = 8;
@@ -282,7 +269,7 @@
             // 
             _valMAC.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _valMAC.ForeColor = Color.FromArgb(220, 220, 230);
-            _valMAC.Location = new Point(170, 142);
+            _valMAC.Location = new Point(175, 150);
             _valMAC.Name = "_valMAC";
             _valMAC.Size = new Size(380, 22);
             _valMAC.TabIndex = 9;
@@ -420,9 +407,9 @@
             _grpSimetria.Controls.Add(_barContainer);
             _grpSimetria.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
             _grpSimetria.ForeColor = Color.FromArgb(100, 180, 220);
-            _grpSimetria.Location = new Point(620, 190);
+            _grpSimetria.Location = new Point(620, 181);
             _grpSimetria.Name = "_grpSimetria";
-            _grpSimetria.Size = new Size(560, 170);
+            _grpSimetria.Size = new Size(560, 179);
             _grpSimetria.TabIndex = 5;
             _grpSimetria.TabStop = false;
             _grpSimetria.Text = "Simetría de Conexión";
@@ -602,12 +589,57 @@
             _valLatLoss.TabIndex = 9;
             _valLatLoss.Text = "—";
             // 
+            // _btnHistory
+            // 
+            _btnHistory.BackColor = Color.FromArgb(60, 140, 200);
+            _btnHistory.Cursor = Cursors.Hand;
+            _btnHistory.FlatAppearance.BorderSize = 0;
+            _btnHistory.FlatStyle = FlatStyle.Flat;
+            _btnHistory.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            _btnHistory.ForeColor = Color.White;
+            _btnHistory.Location = new Point(30, 585);
+            _btnHistory.Name = "_btnHistory";
+            _btnHistory.Size = new Size(200, 40);
+            _btnHistory.TabIndex = 7;
+            _btnHistory.Text = "📊 Ver Historial";
+            _btnHistory.UseVisualStyleBackColor = false;
+            _btnHistory.Click += BtnHistory_Click;
+            // 
+            // _btnMonitoring
+            // 
+            _btnMonitoring.BackColor = Color.FromArgb(100, 180, 100);
+            _btnMonitoring.Cursor = Cursors.Hand;
+            _btnMonitoring.FlatAppearance.BorderSize = 0;
+            _btnMonitoring.FlatStyle = FlatStyle.Flat;
+            _btnMonitoring.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            _btnMonitoring.ForeColor = Color.White;
+            _btnMonitoring.Location = new Point(250, 585);
+            _btnMonitoring.Name = "_btnMonitoring";
+            _btnMonitoring.Size = new Size(200, 40);
+            _btnMonitoring.TabIndex = 8;
+            _btnMonitoring.Text = "⚙️ Monitoreo Continuo";
+            _btnMonitoring.UseVisualStyleBackColor = false;
+            _btnMonitoring.Click += BtnMonitoring_Click;
+            // 
+            // _lblMonitoringStatus
+            // 
+            _lblMonitoringStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            _lblMonitoringStatus.ForeColor = Color.FromArgb(140, 140, 160);
+            _lblMonitoringStatus.Location = new Point(470, 595);
+            _lblMonitoringStatus.Name = "_lblMonitoringStatus";
+            _lblMonitoringStatus.Size = new Size(700, 22);
+            _lblMonitoringStatus.TabIndex = 9;
+            _lblMonitoringStatus.Text = "Monitoreo: Inactivo";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 18, 24);
-            ClientSize = new Size(1210, 600);
+            ClientSize = new Size(1210, 640);
+            Controls.Add(_lblMonitoringStatus);
+            Controls.Add(_btnMonitoring);
+            Controls.Add(_btnHistory);
             Controls.Add(_headerPanel);
             Controls.Add(_btnTest);
             Controls.Add(_lblStatus);
@@ -619,7 +651,7 @@
             ForeColor = Color.White;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "HFASpeedTest Pro";
+            Text = "HFASpeedTest Pro v1.1";
             _headerPanel.ResumeLayout(false);
             _headerPanel.PerformLayout();
             _grpConexion.ResumeLayout(false);
@@ -673,6 +705,7 @@
         private Label _lblLatAvg, _valLatAvg;
         private Label _lblLatJitter, _valLatJitter;
         private Label _lblLatLoss, _valLatLoss;
-        private LinkLabel linkLabel1;
+
+
     }
 }

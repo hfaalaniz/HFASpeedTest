@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
+using HFASpeedTest.Models;
 using HFASpeedTest.Services;
 
 namespace HFASpeedTest
@@ -10,14 +12,79 @@ namespace HFASpeedTest
         private bool _isRunning;
         private System.Threading.CancellationTokenSource _cts;
 
+        // Servicios
+        private readonly HistoryService _historyService;
+        private readonly MonitoringService _monitoringService;
+
+        // Controles adicionales (nuevos)
+        private Button _btnHistory;
+        private Button _btnMonitoring;
+        private Label _lblMonitoringStatus;
+        private NotifyIcon _notifyIcon;
+
         public MainForm()
         {
-            InitializeComponent();
+            // Inicializar servicios
+            _historyService = new HistoryService();
+            _monitoringService = new MonitoringService(_historyService);
 
-            // CRÍTICO: Suscribir al evento ANTES de cualquier test
+            // Suscribir a eventos de monitoreo
+            _monitoringService.OnNotification += OnMonitoringNotification;
+            _monitoringService.OnTestCompleted += OnMonitoringTestCompleted;
+
+            InitializeComponent();
+            ExtendInitializeComponent();
+
+            // Suscribir al evento de progreso del speed test
             SpeedTestService.OnProgress += OnSpeedProgress;
 
-            Debug.WriteLine("MainForm inicializado, evento OnProgress suscrito");
+            // Configurar icono de notificación
+            SetupNotifyIcon();
+
+            Debug.WriteLine("MainForm inicializado con historial y monitoreo");
+        }
+
+        private void SetupNotifyIcon()
+        {
+            _notifyIcon = new NotifyIcon
+            {
+                Icon = SystemIcons.Application,
+                Visible = true,
+                Text = "HFASpeedTest Pro"
+            };
+
+            var contextMenu = new ContextMenuStrip();
+            contextMenu.Items.Add("Mostrar", null, (s, e) =>
+            {
+                Show();
+                WindowState = FormWindowState.Normal;
+                BringToFront();
+            });
+            contextMenu.Items.Add("Ejecutar Test", null, (s, e) => BtnTest_Click(null, null));
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Salir", null, (s, e) =>
+            {
+                _monitoringService.Stop();
+                Application.Exit();
+            });
+
+            _notifyIcon.ContextMenuStrip = contextMenu;
+            _notifyIcon.DoubleClick += (s, e) =>
+            {
+                Show();
+                WindowState = FormWindowState.Normal;
+                BringToFront();
+            };
+        }
+
+        // El InitializeComponent existente se extiende con nuevos botones
+        private void ExtendInitializeComponent()
+        {
+
+            // Timer para actualizar estado de monitoreo
+            var timer = new System.Windows.Forms.Timer { Interval = 1000 };
+            timer.Tick += (s, e) => UpdateMonitoringStatus();
+            timer.Start();
         }
 
         private void BtnTest_MouseEnter(object sender, EventArgs e)
@@ -70,7 +137,32 @@ namespace HFASpeedTest
                 Debug.WriteLine($"Speed test completado: Download={speed.DownloadMbps} Mbps, Upload={speed.UploadMbps} Mbps");
                 UpdateSpeedUI(speed);
 
-                SetStatus("✓ Test completado exitosamente.");
+                // 4. Guardar en historial
+                var record = new SpeedTestRecord
+                {
+                    ConnectionType = connInfo.ConnectionType,
+                    LocalIP = connInfo.LocalIP,
+                    PublicIP = connInfo.PublicIP,
+                    IPType = connInfo.IPType,
+
+                    DownloadMbps = speed.DownloadMbps,
+                    UploadMbps = speed.UploadMbps,
+                    IsSymmetric = speed.IsSymmetric,
+                    SymmetryRatio = speed.SymmetryRatio,
+
+                    LatencyMinMs = latency.MinMs,
+                    LatencyMaxMs = latency.MaxMs,
+                    LatencyAvgMs = latency.AvgMs,
+                    JitterMs = latency.JitterMs,
+                    PacketLoss = latency.PacketLoss,
+
+                    Notes = "Test manual"
+                };
+
+                await _historyService.AddRecordAsync(record);
+                Debug.WriteLine($"Test guardado en historial con ID: {record.Id}");
+
+                SetStatus("✓ Test completado exitosamente. Guardado en historial.");
             }
             catch (OperationCanceledException)
             {
@@ -93,9 +185,79 @@ namespace HFASpeedTest
             }
         }
 
+        private void BtnHistory_Click(object sender, EventArgs e)
+        {
+            var historyForm = new HistoryForm(_historyService);
+            historyForm.ShowDialog();
+        }
+
+        private void BtnMonitoring_Click(object sender, EventArgs e)
+        {
+            var monitoringForm = new MonitoringConfigForm(_monitoringService);
+            monitoringForm.ShowDialog();
+        }
+
+        private void OnMonitoringNotification(object sender, MonitoringNotificationEventArgs e)
+        {
+            // Mostrar notificación del sistema
+            _notifyIcon.BalloonTipTitle = e.Title;
+            _notifyIcon.BalloonTipText = e.Message;
+            _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+
+            switch (e.Type)
+            {
+                case NotificationType.SpeedIncrease:
+                case NotificationType.MonitoringStarted:
+                    _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                    break;
+                case NotificationType.SpeedDecrease:
+                case NotificationType.LatencySpike:
+                case NotificationType.PacketLoss:
+                    _notifyIcon.BalloonTipIcon = ToolTipIcon.Warning;
+                    break;
+            }
+
+            _notifyIcon.ShowBalloonTip(5000);
+
+            Debug.WriteLine($"Notificación mostrada: {e.Title}");
+        }
+
+        private void OnMonitoringTestCompleted(object sender, SpeedTestRecord record)
+        {
+            Debug.WriteLine($"Test de monitoreo completado: {record.DownloadMbps:F2} Mbps");
+
+            // Opcional: actualizar UI si está visible
+            if (Visible && !_isRunning)
+            {
+                // Podríamos actualizar los valores mostrados con el último test
+            }
+        }
+
+        private void UpdateMonitoringStatus()
+        {
+            if (_monitoringService.IsMonitoring)
+            {
+                var timeUntilNext = _monitoringService.GetTimeUntilNextTest();
+                if (timeUntilNext > TimeSpan.Zero)
+                {
+                    _lblMonitoringStatus.Text = $"Monitoreo: ✓ Activo | Próximo test en {timeUntilNext.Hours:D2}:{timeUntilNext.Minutes:D2}:{timeUntilNext.Seconds:D2}";
+                    _lblMonitoringStatus.ForeColor = Color.FromArgb(80, 220, 150);
+                }
+                else
+                {
+                    _lblMonitoringStatus.Text = "Monitoreo: ✓ Activo | Ejecutando test...";
+                    _lblMonitoringStatus.ForeColor = Color.FromArgb(80, 200, 255);
+                }
+            }
+            else
+            {
+                _lblMonitoringStatus.Text = "Monitoreo: ○ Inactivo";
+                _lblMonitoringStatus.ForeColor = Color.FromArgb(140, 140, 160);
+            }
+        }
+
         private void OnSpeedProgress(object sender, SpeedProgressEventArgs e)
         {
-            // CRÍTICO: Debug para verificar que el evento se está llamando
             Debug.WriteLine($"OnSpeedProgress llamado: IsDownload={e.IsDownload}, Mbps={e.CurrentMbps:F2}, Bytes={e.BytesTransferred}");
 
             if (InvokeRequired)
@@ -115,7 +277,6 @@ namespace HFASpeedTest
             {
                 if (e.IsDownload)
                 {
-                    // Actualizar descarga
                     if (e.CurrentMbps > 0)
                     {
                         _lblDownSpeed.Text = e.CurrentMbps.ToString("F2");
@@ -126,7 +287,6 @@ namespace HFASpeedTest
                 }
                 else
                 {
-                    // Actualizar subida
                     if (e.CurrentMbps > 0)
                     {
                         _lblUpSpeed.Text = e.CurrentMbps.ToString("F2");
@@ -186,14 +346,12 @@ namespace HFASpeedTest
 
             Debug.WriteLine($"Actualizando UI final: Download={speed.DownloadMbps}, Upload={speed.UploadMbps}");
 
-            // Valores finales
             _lblDownSpeed.Text = speed.DownloadMbps.ToString("F2");
             _lblDownSpeed.ForeColor = Color.White;
 
             _lblUpSpeed.Text = speed.UploadMbps.ToString("F2");
             _lblUpSpeed.ForeColor = Color.White;
 
-            // Simetría
             _lblSimetriaVal.Text = $"{speed.SymmetryRatio:F1}%";
 
             if (speed.IsSymmetric)
@@ -215,7 +373,6 @@ namespace HFASpeedTest
                 _lblSimetriaDesc.ForeColor = Color.FromArgb(255, 180, 60);
             }
 
-            // Barras
             double maxVal = Math.Max(speed.DownloadMbps, speed.UploadMbps);
             int barW = _barContainer.Width;
 
@@ -298,23 +455,29 @@ namespace HFASpeedTest
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            Debug.WriteLine("Formulario cerrándose, cancelando test...");
-            _cts?.Cancel();
-            base.OnFormClosing(e);
-        }
+            Debug.WriteLine("Formulario cerrándose...");
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Abre la página web en el navegador predeterminado
-
-            // Marca el enlace como visitado
-            System.Diagnostics.Process.Start(new ProcessStartInfo
+            if (_monitoringService.IsMonitoring)
             {
-                FileName = "https://github.com/hfaalaniz/HFASpeedTest/blob/main/README.md",
-                        UseShellExecute = true
-            });
+                var result = MessageBox.Show(
+                    "El monitoreo continuo está activo. ¿Deseas detenerlo y cerrar la aplicación?",
+                    "Confirmar Cierre",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-            ((LinkLabel)sender).LinkVisited = true;
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+
+                _monitoringService.Stop();
+            }
+
+            _cts?.Cancel();
+            _notifyIcon?.Dispose();
+
+            base.OnFormClosing(e);
         }
     }
 }
