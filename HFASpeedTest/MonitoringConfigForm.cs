@@ -40,7 +40,7 @@ namespace HFASpeedTest
             _chkNotifyLatency.Checked = _config.NotifyOnLatencySpike;
             _numLatencyThreshold.Value = (decimal)_config.LatencySpikeThresholdMs;
             _chkNotifyPacketLoss.Checked = _config.NotifyOnPacketLoss;
-           // _numPacketLossThreshold.Value = _config.PacketLossThresholdPercent;
+            _numPacketLossThreshold.Value = _config.PacketLossThresholdPercent;
         }
 
         private void SaveConfig()

@@ -154,7 +154,7 @@
             _numInterval.Name = "_numInterval";
             _numInterval.Size = new Size(120, 23);
             _numInterval.TabIndex = 1;
-            _numInterval.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            _numInterval.Value = new decimal(new int[] { 30, 0, 0, 0 });
             // 
             // lblInterval
             // 
@@ -205,18 +205,18 @@
             _numLatencyThreshold.Name = "_numLatencyThreshold";
             _numLatencyThreshold.Size = new Size(120, 23);
             _numLatencyThreshold.TabIndex = 1;
-            _numLatencyThreshold.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            _numLatencyThreshold.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
             // _numPacketLossThreshold
             // 
             _numPacketLossThreshold.BackColor = Color.FromArgb(28, 28, 38);
             _numPacketLossThreshold.ForeColor = Color.White;
             _numPacketLossThreshold.Location = new Point(21, 68);
-            _numPacketLossThreshold.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
+            _numPacketLossThreshold.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             _numPacketLossThreshold.Name = "_numPacketLossThreshold";
             _numPacketLossThreshold.Size = new Size(120, 23);
             _numPacketLossThreshold.TabIndex = 1;
-            _numPacketLossThreshold.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            _numPacketLossThreshold.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // _numSpeedThreshold
             // 
@@ -227,7 +227,7 @@
             _numSpeedThreshold.Name = "_numSpeedThreshold";
             _numSpeedThreshold.Size = new Size(120, 23);
             _numSpeedThreshold.TabIndex = 1;
-            _numSpeedThreshold.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            _numSpeedThreshold.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // lblLatencyThreshold
             // 
